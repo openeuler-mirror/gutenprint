@@ -1,8 +1,8 @@
 Name:          gutenprint
 Version:       5.2.14
-Release:       4
+Release:       5
 Summary:       A suite of printer drivers
-License:       GPLv2+
+License:       GPLv2+ and MIT
 URL:           http://gimp-print.sourceforge.net/
 Source0:       http://downloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
 Source1:       cups-genppdupdate.py.in
@@ -106,7 +106,8 @@ chrpath -d $RPM_BUILD_ROOT%{_cups_serverbin}/driver/*
 chrpath -d $RPM_BUILD_ROOT%{_cups_serverbin}/filter/*
 chrpath -d $RPM_BUILD_ROOT%{_bindir}/*
 
-%post -p /sbin/ldconfig
+%post 
+/sbin/ldconfig
 /usr/sbin/cups-genppdupdate &>/dev/null || :
 /sbin/service cups reload &>/dev/null || :
 exit 0
@@ -142,5 +143,8 @@ exit 0
 %{_mandir}/man*/*
 
 %changelog
+* Thu Nov 26 2020 liuweibo <liuweibo10@huawei.com> - 5.2.14-5
+- Fix install warning
+
 * Sat Nov 30 2019 openEuler Buildteam <buildteam@openeuler.org> - 5.2.14-4
 - Package init
