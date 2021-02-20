@@ -1,6 +1,8 @@
+%bcond_with gimp
+
 Name:          gutenprint
 Version:       5.2.14
-Release:       5
+Release:       6
 Summary:       A suite of printer drivers
 License:       GPLv2+ and MIT
 URL:           http://gimp-print.sourceforge.net/
@@ -13,18 +15,23 @@ Patch3:        gutenprint-yyin.patch
 Patch4:        gutenprint-manpage.patch
 Patch5:        gutenprint-python36syntax.patch
 
+%if %{with gimp}
+BuildRequires: pkgconfig(gimpui-2.0), gimp
+Requires:      gimp
+Provides:      %{name}-plugin%{?_isa} %{name}-plugin
+Obsoletes:     %{name}-plugin
+%endif
+
 BuildRequires: cups-libs, cups-devel, cups, gettext-devel, pkgconfig, libtiff-devel, libjpeg-devel, libpng-devel
-BuildRequires: pkgconfig(libusb-1.0), pkgconfig(gtk+-2.0), pkgconfig(gimpui-2.0), gimp, chrpath, python3-cups
+BuildRequires: pkgconfig(libusb-1.0), pkgconfig(gtk+-2.0), chrpath, python3-cups
 BuildRequires: autoconf, automake, libtool, python3-devel
-Requires:      gimp, cups
+Requires:      cups
 Provides:      %{name}-doc%{?_isa} %{name}-doc
 Obsoletes:     %{name}-doc
 Provides:      %{name}-libs%{?_isa} %{name}-libs
 Obsoletes:     %{name}-libs
 Provides:      %{name}-libs-ui%{?_isa} %{name}-libs-ui
 Obsoletes:     %{name}-libs-ui
-Provides:      %{name}-plugin%{?_isa} %{name}-plugin
-Obsoletes:     %{name}-plugin
 Provides:      %{name}-extras%{?_isa} %{name}-extras
 Obsoletes:     %{name}-extras
 Provides:      %{name}-cups%{?_isa} %{name}-cups
@@ -100,7 +107,9 @@ cat %{name}-po.lang >>%{name}.lang
 echo .so man8/cups-genppd.8 > $RPM_BUILD_ROOT%{_mandir}/man8/cups-genppd.5.2.8
 
 chrpath -d $RPM_BUILD_ROOT%{_sbindir}/cups-genppd.5.2
+%if %{with gimp}
 chrpath -d $RPM_BUILD_ROOT%{_libdir}/gimp/*/plug-ins/*
+%endif
 chrpath -d $RPM_BUILD_ROOT%{_libdir}/*.so.*
 chrpath -d $RPM_BUILD_ROOT%{_cups_serverbin}/driver/*
 chrpath -d $RPM_BUILD_ROOT%{_cups_serverbin}/filter/*
@@ -127,7 +136,9 @@ exit 0
 %{_datadir}/cups/usb/net.sf.gimp-print.usb-quirks
 %{_libdir}/%{name}
 %{_libdir}/*.so.*
+%if %{with gimp}
 %{_libdir}/gimp/*/plug-ins/%{name}
+%endif
 %{_cups_serverbin}/filter/*
 %{_cups_serverbin}/driver/*
 %{_cups_serverbin}/backend/*
@@ -143,6 +154,9 @@ exit 0
 %{_mandir}/man*/*
 
 %changelog
+* Sat Feb 20 2021 lingsheng <lingsheng@huawei.com> - 5.2.14-6
+- Disable gimp plugins build
+
 * Thu Nov 26 2020 liuweibo <liuweibo10@hauwei.com> - 5.2.14-5
 - Fix install warning
 
