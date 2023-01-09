@@ -2,7 +2,7 @@
 
 Name:          gutenprint
 Version:       5.2.14
-Release:       6
+Release:       7
 Summary:       A suite of printer drivers
 License:       GPLv2+ and MIT
 URL:           http://gimp-print.sourceforge.net/
@@ -14,6 +14,7 @@ Patch2:        gutenprint-postscriptdriver.patch
 Patch3:        gutenprint-yyin.patch
 Patch4:        gutenprint-manpage.patch
 Patch5:        gutenprint-python36syntax.patch
+Patch6:        gutenprint-Add-Epson-Expression-ET-2600-EcoTank.patch
 
 %if %{with gimp}
 BuildRequires: pkgconfig(gimpui-2.0), gimp
@@ -79,6 +80,7 @@ This package includes man files for %{name}.
 cp %{SOURCE1} src/cups/cups-genppdupdate.in
 sed -i -e 's,^#!/usr/bin/python3,#!%{__python3},' src/cups/cups-genppdupdate.in
 %patch5 -p1
+%patch6 -p1
 
 %build
 sed -i -e 's,^\(TESTS *=.*\) run-weavetest,\1,' test/Makefile.in
@@ -154,6 +156,9 @@ exit 0
 %{_mandir}/man*/*
 
 %changelog
+* Sat Jan 7 2023 yaoguangzhong <yaoguangzhong@xfusion.com> - 5.2.14-7
+- backport add Epson Expression ET-2600 EcoTank
+
 * Sat Feb 20 2021 lingsheng <lingsheng@huawei.com> - 5.2.14-6
 - Disable gimp plugins build
 

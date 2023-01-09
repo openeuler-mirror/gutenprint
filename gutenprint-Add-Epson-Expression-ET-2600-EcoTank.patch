@@ -1,0 +1,42 @@
+From b154b16431712017ea69d2dd7fda25efb487c86d Mon Sep 17 00:00:00 2001
+From: Robert Krawitz <rlk@alum.mit.edu>
+Date: Tue, 24 Jul 2018 08:06:49 -0400
+Subject: [PATCH] Add Epson Expression ET-2600 EcoTank
+
+---
+ NEWS                 | 6 ++++++
+ src/xml/printers.xml | 1 +
+ 2 files changed, 7 insertions(+)
+
+diff --git a/NEWS b/NEWS
+index 13b793ca..aeb63ed0 100644
+--- a/NEWS
++++ b/NEWS
+@@ -248,6 +248,12 @@ device.  We have determined that the data is in fact written by the
+ 
+ III) MAJOR CHANGES FROM PREVIOUS RELEASES
+ 
++* Changes from 5.2.14
++
++  1) The following Epson inkjet printer has been added:
++
++     Epson Expression ET-2600 EcoTank ET
++
+ * Changes from 5.2.13
+ 
+   1) The PCL driver now supports color laser printers that use PCL 5c
+diff --git a/src/xml/printers.xml b/src/xml/printers.xml
+index 32573ea7..9d15b2f4 100644
+--- a/src/xml/printers.xml
++++ b/src/xml/printers.xml
+@@ -1534,6 +1534,7 @@
+       <printer translate="name" name="Epson B-500DN" driver="escp2-b500dn" manufacturer="Epson" model="87" parameters="standard_params" />
+       <printer translate="name" name="Epson B-508DN" driver="escp2-b508dn" manufacturer="Epson" model="87" parameters="standard_params" />
+       <printer translate="name" name="Epson B-510DN" driver="escp2-b510dn" manufacturer="Epson" model="87" parameters="standard_params" />
++      <printer translate="name" name="Epson Expression ET-2600 EcoTank" driver="escp2-et2600" manufacturer="Epson" model="80" parameters="cx3500_params" />
+       <printer translate="name" name="Epson L120" driver="escp2-l120" manufacturer="Epson" model="80" parameters="cx3500_params" />
+       <printer translate="name" name="Epson L210" driver="escp2-l210" manufacturer="Epson" model="80" parameters="cx3500_params" />
+       <printer translate="name" name="Epson L310" driver="escp2-l310" manufacturer="Epson" model="129" parameters="cx3500_params" />
+-- 
+2.27.0
+
