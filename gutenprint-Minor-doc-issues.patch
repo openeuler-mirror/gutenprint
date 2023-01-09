@@ -1,0 +1,25 @@
+From 907f862a4e838207b7e2a673e18b4fbd998b8529 Mon Sep 17 00:00:00 2001
+From: Robert Krawitz <rlk@alum.mit.edu>
+Date: Sun, 29 Jul 2018 10:33:24 -0400
+Subject: [PATCH] Minor doc issues
+
+---
+ scripts/autogen.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/scripts/autogen.sh b/scripts/autogen.sh
+index c510dfcc..a5c580c0 100644
+--- a/scripts/autogen.sh
++++ b/scripts/autogen.sh
+@@ -298,7 +298,7 @@ if test -d /usr/share/sgml/docbook ;  then
+ fi
+ 
+ {
+-  test -d "/usr/share/sgml/docbook_4" || test -d "/usr/share/sgml/docbook/dtd/4.0" || test -d "/usr/share/sgml/docbook_4.1" || test -n "$fedora_docbook"
++  test -d "/usr/share/sgml/docbook_4" || test -d "/usr/share/sgml/docbook/dtd/4.0" || test -d "/usr/share/sgml/docbook/dtd/4.1" || test -d "/usr/share/sgml/docbook_4.1" || test -n "$fedora_docbook"
+ } || {
+   echo " "
+   echo "***Warning***: You must have Docbook v4 installed to"
+-- 
+2.39.0.windows.2
+
