@@ -1,0 +1,12 @@
+diff -up gutenprint-5.2.14/src/main/path.c.orig2 gutenprint-5.2.14/src/main/path.c
+--- gutenprint-5.2.14/src/main/path.c.orig2	2023-04-26 13:40:20.001149474 +0800
++++ gutenprint-5.2.14/src/main/path.c	2023-04-26 13:40:38.669253645 +0800
+@@ -246,7 +246,7 @@ stp_paths_copy_with_prefix(stp_list_t *l
+   stp_list_item_t *item;
+   int prefixlen = strlen (prefix);
+   if (!(new_list = stp_list_create()))
+-    return;
++    return 0;
+ 
+   item = stp_list_get_start (list);
+   while (item)
